@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Описание и рекомендации по разработке Shitty-аддонов | nord-husky</title>
+<meta name="description" content="Памятка по разработке Shitty Addon: стандарт, размеры, материалы, ограничения производства и примеры готовых плат.">
+
+
+
+
+  <style>
+    :root {
+      --accent: #7de07d;
+      --accent-dim: #4ea95d;
+    }
+  </style>
+
+<script>
+  (function() {
+    try {
+      var theme = localStorage.getItem("tmpout-theme");
+      if (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+        theme = "light";
+      }
+      document.documentElement.dataset.theme = theme || "dark";
+    } catch (e) {
+      document.documentElement.dataset.theme = "dark";
+    }
+  })();
+</script>
+
+  
+  <link rel="stylesheet" href="/css/main.min.3fc0aa50bc9437d1922f3aaca1f1eccb0534d766b9d9c0a1005b3d9ab8467116.css" integrity="sha256-P8CqULyUN9GSLzqsofHsywU012a52cChAFs9mrhGcRY=">
+
+
+  
+  <script src="/js/theme.min.db1c6c31f9e621eb3fc52d114c4b6eebc514aa958dd3665003abd7c0405722a0.js" integrity="sha256-2xxsMfnmIes/xS0RTEtu68UUqpWN02ZQA6vXwEBXIqA=" defer></script>
+
+
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+  
+  
+  
+  <div class="site-title-row">
+    <div>
+      <h1 class="site-title">
+        <a href="/">
+          nord-husky // blog
+        </a>
+      </h1>
+      <p class="site-tagline">What a time to be alive</p>
+    </div>
+    <div class="header-tools">
+      
+      
+      
+      
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        data-label-light="light"
+        data-label-night="night"
+        data-switch-template="Switch to %s theme"
+        aria-label="Switch to light theme"
+        title="Switch to light theme">
+        light
+      </button>
+    </div>
+  </div>
+
+  
+    
+    
+    <nav class="top-nav" aria-label="Primary">
+      
+        
+          
+          <a href="/">Home</a>
+        
+      
+        
+          
+          <a href="/entries/">Entries</a>
+        
+      
+        
+        
+      
+      
+        
+          <a href="/tags/">Tags</a>
+        
+      
+      
+        
+      
+        
+      
+        
+          <a href="/contacts/">Contacts</a>
+        
+      
+    </nav>
+  
+</header>
+
+      <main id="content">
+        
+  
+  
+  
+  <article class="article-shell with-toc">
+    <div class="article-body">
+      <header class="article-header">
+        <p class="meta-line">
+          
+            <a href="/entries/">Entries</a> // 
+            2026-06-25
+             · Nord Husky
+          
+        </p>
+        <h1 class="article-title">Описание и рекомендации по разработке Shitty-аддонов</h1>
+        <p class="article-summary">Памятка по разработке Shitty Addon: стандарт, размеры, материалы, ограничения производства и примеры готовых плат.</p>
+        
+  <div class="article-tags" aria-label="Tags">
+    
+      <a href="/tags/hardware/">Hardware</a>
+    
+      <a href="/tags/conference/">Conference</a>
+    
+      <a href="/tags/shitty-addon/">Shitty-Addon</a>
+    
+      <a href="/tags/guide/">Guide</a>
+    
+  </div>
+
+
+        
+      </header>
+
+      <div class="article-content">
+        <h2 id="1-основные-понятия">1. Основные понятия</h2>
+<p><strong>Печатная плата</strong> - пластина из текстолита на поверхности и/или в объёме которой сформированы электропроводящие цепи электронной схемы. Является основой каждого аддона.</p>
+<p><strong>Паяльная маска</strong> - слой защитного материала, покрывающий поверхность печатной платы и придающий основной цвет печатной плате. На паяльную маску наносится шелкография.</p>
+<p><strong>Шелкография</strong> - способ нанесения на поверхность печатной платы надписей,
+рисунков и иной визуальной информации при помощи краски.</p>
+<p><strong>Металлизация</strong> - открытие контактные площадки на поверхности печатной платы, свободные от паяльной пасты и шелкографии.</p>
+<p><strong>Аддон</strong> - небольшая печатная плата произвольной формы и дизайна, с функциональной частью (электрической схемой) или без, предназначенная для крепления на основную плату бейджа при помощи аддона стандарта Shitty Connector v1.69.</p>
+<h2 id="2-памятка-при-разработке">2. Памятка при разработке</h2>
+<h3 id="21-структура-печатной-платы">2.1. Структура печатной платы</h3>
+<p>В общем виде печатная плата выглядит обычно так:</p>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782404562395.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Или, если разобрать печатную плату:</p>
+<ul>
+<li>шелкография</li>
+<li>паяльная маска</li>
+<li>проводящий слой (металл)</li>
+<li>диэлектрик (текстолит)</li>
+</ul>
+<p>Если плата двусторонняя, то все слои зеркальны, кроме диэлектрика, так как он находится в середине платы.</p>
+<h3 id="22-стандарт-shitty-addon">2.2. Стандарт Shitty Addon</h3>
+<p>Неофициальный стандарт, изначально разработанный участниками DEFCON. Используется для унификации бейджей и аддонов к ним. Существует несколько стандартов: v1.0 и v1.69</p>
+<h4 id="v10">v1.0</h4>
+<p>На данный момент устаревший формат, использующий 4 контакта. Применялся до OFFZONE 2025.</p>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782401443337.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Контакты:
+<strong>VCC</strong> - питание
+<strong>GND</strong> - земля
+<strong>SDA</strong>/<strong>SCL</strong> - I2C-шина</p>
+<h4 id="v169">v1.69</h4>
+<p>Обновленный стандарт, призванный исправить недостатки прошлой версии:</p>
+<ul>
+<li><strong>Физическая прочность</strong> - 6 контактов сложнее выломать или случайно сбить, чем 4.</li>
+<li><strong>Правильное соединение</strong> - ассиметричность аддона дает меньше шансов вставить его неправильно (с определенными коннекторами этот шанс становится равным нулю).</li>
+<li><strong>Расширяемость</strong> - больше контактов = больше возможностей по функциональности аддонов.</li>
+</ul>
+<p>На OFFZONE он используется с 2025 года.</p>
+<p><figure class="article-figure is-compact"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782402415712.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Контакты:
+<strong>VCC</strong> - питание
+<strong>GND</strong> - земля
+<strong>SDA</strong>/<strong>SCL</strong> - I2C-шина
+<strong>GPIO1</strong>/<strong>GPIO2</strong> - контакты общего назначения</p>
+<h3 id="23-физические-размеры-аддона">2.3. Физические размеры аддона</h3>
+<p>Стандартными размерами аддона считается <strong>5x5 см</strong>. Несмотря на то, что данное ограничение не является строгим, не рекомендуется сильно его превышать во избежание конфликта с размещением на бейджах совместно с другими аддонами.</p>
+<p>Разъем для подсоединения аддона (он же коннектор) обычно располагают по центру в нижней части платы, в редких случаях - по центу платы</p>
+<p><strong>Важно</strong>: Размещение коннектора на аддоне обязательно! Советуем заранее учитывать это в разработке макета.</p>
+<h3 id="24-паяльная-маска">2.4. Паяльная маска</h3>
+<p>Паяльная маска является превалирующим цветом печатной платы. Цвета могут быть следующими:</p>
+<ul>
+<li>Зеленый (<strong>#008C4A</strong>)</li>
+<li>Красный (<strong>#D0011B</strong>)</li>
+<li>Желтый (<strong>#F6A624</strong>)</li>
+<li>Синий (<strong>#4990E2</strong>)</li>
+<li>Белый (<strong>#ECECDF</strong>)</li>
+<li>Черный (<strong>#000000</strong>)</li>
+<li>Фиолетовый (<strong>#A352C4</strong>)</li>
+</ul>
+<p><figure class="article-figure is-compact"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782403416279.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p><strong>Важно</strong>: одна печатная плата может иметь только один цвет паяльной маски. Комбинировать несколько цветов на одной стороне платы, или использовать разные цвета на разных сторонах платы не представляется возможным.</p>
+<h3 id="25-шелкография-маркировка">2.5. Шелкография (маркировка)</h3>
+<p>Шелкография в конвенциональном использовании применяется для маркировки компонентов на плате, однако также может использоваться для создания иллюстраций или сплошной заливки печатной платы поверх паяльной маски.</p>
+<p>Доступные цвета:</p>
+<ul>
+<li>Для белой / желтой паяльных масок - черная шелкография</li>
+<li>Для всех остальных цветов - белая шелкография</li>
+</ul>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408360619.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p><strong>Важно</strong>: одна печатная плата может иметь только один цвет шелкографии. Комбинировать несколько цветов на одной стороне платы, или использовать разные цвета на разных сторонах платы не представляется возможным.</p>
+<p><strong>Важно</strong>: в общем случае следует стараться заливать шелкографией не более 50% площади платы, во избежание возможных проблем с производством.</p>
+<h3 id="26-металлизация">2.6. Металлизация</h3>
+<p>Контактные площадки печатной платы могут быть покрыты слоем металла. Также данную технику можно использовать как часть дизайна аддона. Возможные варианты цветов:</p>
+<ul>
+<li>Медный (OSP)</li>
+<li>Серебристый (HASL)</li>
+<li>Золотой (ENIG)</li>
+</ul>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782404178871.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p><strong>Важно</strong>: в целях безопасности конечных пользователей вместо стандартного HASL используется HASL Lead Free (без свинца).</p>
+<h3 id="27-текстолит">2.7. Текстолит</h3>
+<p>Голый текстолит (без всех прочих нанесенных на него слоев) также доступен как элемент дизайна. Имеет <strong>бледно-желтый</strong> (или <strong>песочно-телесный</strong>) цвет, частично пропускает через себя свет.</p>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782404486822.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<h3 id="28-форма-и-вырезы">2.8. Форма и вырезы</h3>
+<p>Форма и вырезы в печатной плате также могут использоваться в качестве элементов дизайна, однако есть несколько рекомендаций:</p>
+<ul>
+<li>Не делать края плат слишком острыми, во избежание случайных порезов и травм.</li>
+<li>Вырезы и формы платы должны быть достаточными для проводки электрической схемы, а также не должны критично влиять на механическую прочность платы.</li>
+</ul>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782405043053.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Пример выше является не самым удачным дизайном, не смотря на его красоту, из-за острых краев платы.</p>
+<h3 id="29-функциональная-нагрузка">2.9. Функциональная нагрузка</h3>
+<p>Функциональная нагрузка на плате может быть практически любой, если:</p>
+<ul>
+<li>Она физически возможна</li>
+<li>Вы готовы на нее потратиться (цена всех компонентов)</li>
+<li>Потребление схемы 3.3 вольта, потребляемый ток - до 1 ампера</li>
+</ul>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782405198120.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Чаще всего используются простые электронные схемы без микроконтроллеров (она же аналоговая электроника), либо статичные светодиоды.</p>
+<h3 id="210-прочее">2.10. Прочее</h3>
+<p>Есть также некоторые ограничения и уточнения, не попавшие в пункты выше.</p>
+<h4 id="тираж">Тираж</h4>
+<p>Несмотря на то, что тираж плат может быть неограниченным при наличии соответствующего бюджета, закладывайте в партию, при стандартном запросе, не более 100 штук. На данную рекомендацию есть несколько причин:</p>
+<ul>
+<li>Большие партии стоят немало, при сложной электронной схеме</li>
+<li>Сложность сборки напрямую влияет на сроки и цену</li>
+<li>Вам, скорее всего, некуда будет девать огромное количество плат</li>
+</ul>
+<p>Для статистики, максимальная партия, которая когда-либо появлялась на OFFZONE - это аддон от Кибердома в 2023 году, в размере около 500 штук, и&hellip; они были без компонентов, только 4 контакта коннектора, из которых паялось 2. Также учитывайте, все платы паяются вручную (с частичным применением автоматизации, по возможности), и, даже с учетом простой пайки и команды людей, это занимает немало времени.</p>
+<h4 id="разные-цвета-на-плате">Разные цвета на плате</h4>
+<p>До этого во всех разделах было сказано, что цвета нельзя смешивать, что является не совсем правдой, и наверняка вы видели такие платы:</p>
+<p><figure class="article-figure is-compact"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408024390.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Так вот - производство таких плат возможно, но они:</p>
+<ul>
+<li>Сложны в разработке - в большинстве стандартных сред разработки печатных плат сделать такой дизайн невозможно.</li>
+<li>Сложны к заказу - данная функция доступна у очень малого количества производств по миру, и привезти их крайне непросто. Самостоятельное же производство возможно, но затраты на оборудование ради единичного производства того не стоят.</li>
+<li>Дороги - по вышеуказанным причинам.</li>
+</ul>
+<h4 id="альтернативные-цвета-слоев">Альтернативные цвета слоев</h4>
+<p>Все цвета для всех слоев, указанные в предыдущих пунктах, приведены и валидны для большинства китайских производств. На некоторых производствах могут быть доступны дополнительные цвета (например, розовая паяльная маска), но оплата и доставка с ними может быть более труднодоступна.</p>
+<h4 id="особенности-дизайна">Особенности дизайна</h4>
+<p>Из-за ограничений производств не рекомендуется использовать линии тоньше 0.2 мм в дизайне во избежание появления артефактов на готовом продукте. Это относится как к элементам возможных иллюстраций, так и к тексту.</p>
+<h2 id="31-примеры-готовых-аддонов">3.1. Примеры готовых аддонов</h2>
+<h3 id="mr-technique">Mr. Technique</h3>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408838830.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+
+<figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408852727.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Черная паяльная маска, белая шелкография, 3 светодиода, коннектор v1.0</p>
+<h3 id="lain">Lain</h3>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408915820.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+
+<figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782408933949.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Черная паяльная маска, белая шелкография, 4 светодиода, коннектор v1.69</p>
+<h3 id="broken-file">Broken file</h3>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782409007769.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+
+<figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782409017989.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Белая паяльная маска, черная шелкография, коннектор v1.69</p>
+<h3 id="ikarus">Ikarus</h3>
+<p><figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782409155597.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+
+<figure class="article-figure"><img
+      src="/entries/hardware/shitty_addons_guide/images/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5%20Shitty-%D0%B0%D0%B4%D0%B4%D0%BE%D0%BD%D0%BE%D0%B2-1782409164222.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"></figure>
+</p>
+<p>Красная паяльная маска, черная шелкография, 4 светодиода, коннектор v1.0</p>
+
+        
+      </div>
+    </div>
+
+    
+      <aside class="toc">
+        <h2>Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-основные-понятия">1. Основные понятия</a></li>
+    <li><a href="#2-памятка-при-разработке">2. Памятка при разработке</a>
+      <ul>
+        <li><a href="#21-структура-печатной-платы">2.1. Структура печатной платы</a></li>
+        <li><a href="#22-стандарт-shitty-addon">2.2. Стандарт Shitty Addon</a></li>
+        <li><a href="#23-физические-размеры-аддона">2.3. Физические размеры аддона</a></li>
+        <li><a href="#24-паяльная-маска">2.4. Паяльная маска</a></li>
+        <li><a href="#25-шелкография-маркировка">2.5. Шелкография (маркировка)</a></li>
+        <li><a href="#26-металлизация">2.6. Металлизация</a></li>
+        <li><a href="#27-текстолит">2.7. Текстолит</a></li>
+        <li><a href="#28-форма-и-вырезы">2.8. Форма и вырезы</a></li>
+        <li><a href="#29-функциональная-нагрузка">2.9. Функциональная нагрузка</a></li>
+        <li><a href="#210-прочее">2.10. Прочее</a></li>
+      </ul>
+    </li>
+    <li><a href="#31-примеры-готовых-аддонов">3.1. Примеры готовых аддонов</a>
+      <ul>
+        <li><a href="#mr-technique">Mr. Technique</a></li>
+        <li><a href="#lain">Lain</a></li>
+        <li><a href="#broken-file">Broken file</a></li>
+        <li><a href="#ikarus">Ikarus</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </aside>
+    
+  </article>
+
+      </main>
+      <footer class="site-footer">
+  
+  
+  <span>If I&#39;ll die, I pray I&#39;ll die in martyrdom // 2026</span>
+</footer>
+
+    </div>
+  </body>
+</html>
