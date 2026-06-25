@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/conference/</loc>
+    <loc>https://blog.nord-husky.com/tags/conference/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/entries/</loc>
+    <loc>https://blog.nord-husky.com/entries/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/guide/</loc>
+    <loc>https://blog.nord-husky.com/tags/guide/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/hardware/</loc>
+    <loc>https://blog.nord-husky.com/tags/hardware/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://blog.nord-husky.com/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/shitty-addon/</loc>
+    <loc>https://blog.nord-husky.com/tags/shitty-addon/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://blog.nord-husky.com/tags/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/entries/hardware/shitty_addons_guide/</loc>
+    <loc>https://blog.nord-husky.com/entries/hardware/shitty_addons_guide/</loc>
     <lastmod>2026-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contacts/</loc>
+    <loc>https://blog.nord-husky.com/contacts/</loc>
     <lastmod>2026-04-02T00:00:00+00:00</lastmod>
   </url>
 </urlset>

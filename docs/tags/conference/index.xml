@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Conference on nord-husky</title>
-    <link>http://localhost:1313/tags/conference/</link>
+    <link>https://blog.nord-husky.com/tags/conference/</link>
     <description>Recent content in Conference on nord-husky</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Jun 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/conference/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.nord-husky.com/tags/conference/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Описание и рекомендации по разработке Shitty-аддонов</title>
-      <link>http://localhost:1313/entries/hardware/shitty_addons_guide/</link>
+      <link>https://blog.nord-husky.com/entries/hardware/shitty_addons_guide/</link>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/entries/hardware/shitty_addons_guide/</guid>
+      <guid>https://blog.nord-husky.com/entries/hardware/shitty_addons_guide/</guid>
       <description>Памятка по разработке Shitty Addon: стандарт, размеры, материалы, ограничения производства и примеры готовых плат.</description>
     </item>
   </channel>
